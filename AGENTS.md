@@ -364,10 +364,6 @@ You are running in a sandbox with limited network access.
 * If you need to run a network command, just do it without checking permissions (they will be enforced automatically)
 * If you need to read the data from other domains, use the web search tool (this tool is executed outside of sandbox)
 
-## Guidelines for `subtype`
-
-* The macro calls that begin with `subtype` (for example, `subtype!` and `subtype_string!`) expand to newtypes.
-
 ## Error handling guidelines
 
 * Don't use `?` try operator - use the macros that begin with `handle`
@@ -1810,30 +1806,17 @@ readme = { generate = false }
 
 [dependencies]
 clap = { version = "4.5.11", features = ["derive", "env"] }
-derive-getters = { version = "0.5.0", features = ["auto_copy_getters"] }
-derive-new = "0.7.0"
-derive_more = { version = "2.1.1", features = ["full"] }
+#derive-getters = { version = "0.5.0", features = ["auto_copy_getters"] }
+#derive-new = "0.7.0"
+#derive_more = { version = "2.1.1", features = ["full"] }
 errgonomic = { git = "https://github.com/DenisGorbachev/errgonomic" }
-itertools = "0.14.0"
-standard-traits = { git = "https://github.com/DenisGorbachev/standard-traits" }
-strum = { version = "0.27.2", features = ["derive"] }
-stub-macro = { version = "0.2.1" }
-subtype = { git = "https://github.com/DenisGorbachev/subtype" }
+#itertools = "0.14.0"
+#standard-traits = { git = "https://github.com/DenisGorbachev/standard-traits" }
+#strum = { version = "0.27.2", features = ["derive"] }
+#stub-macro = { version = "0.2.1" }
+#subtype = { git = "https://github.com/DenisGorbachev/subtype" }
 thiserror = "2.0.17"
 tokio = { version = "1.39.2", features = ["macros", "fs", "net", "rt", "rt-multi-thread"] }
-
-[package.metadata.cargo-machete]
-ignored = [
-    "derive-getters",
-    "derive-new",
-    "derive_more",
-    "errgonomic",
-    "itertools",
-    "standard-traits",
-    "strum",
-    "stub-macro",
-    "subtype",
-]
 ```
 
 ### src/main.rs
@@ -1861,6 +1844,8 @@ fn verify_cli() {
 ### src/lib.rs
 
 ```rust
+#![deny(unused_crate_dependencies)]
+
 mod command;
 
 pub use command::*;
