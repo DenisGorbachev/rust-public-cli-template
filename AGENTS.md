@@ -2002,6 +2002,18 @@ thiserror = "2.0.17"
 tokio = { version = "1.39.2", features = ["macros", "fs", "net", "rt", "rt-multi-thread"] }
 ```
 
+### fnox.toml
+
+```toml
+#:schema https://fnox.jdx.dev/schema.json
+
+if_missing = "error"
+
+[providers]
+keychain = { type = "keychain", service = "rust-pre-public-cli-template" }
+pass = { type = "password-store", prefix = "rust-pre-public-cli-template/" }
+```
+
 ### src/main.rs
 
 ```rust
@@ -2022,18 +2034,6 @@ fn verify_cli() {
     use clap::CommandFactory;
     Command::command().debug_assert();
 }
-```
-
-### fnox.toml
-
-```toml
-#:schema https://fnox.jdx.dev/schema.json
-
-if_missing = "error"
-
-[providers]
-keychain = { type = "keychain", service = "rust-pre-public-lib-template" }
-pass = { type = "password-store", prefix = "rust-pre-public-lib-template/" }
 ```
 
 ### src/lib.rs
